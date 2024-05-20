@@ -3,11 +3,13 @@ import org.springframework.stereotype.Component;
 
 import com.ssjvirtually.springsecuritydemo.entity.User;
 import com.ssjvirtually.springsecuritydemo.repository.UserRepo;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Component
+@Transactional
 public class UserService {
     
 
@@ -30,5 +32,9 @@ public class UserService {
 
     public List<User> getAllUsers() {
         return  userRepo.findAll();
+    }
+
+    public void deleteUser(String username) {
+        userRepo.deleteByUsername(username);
     }
 }
